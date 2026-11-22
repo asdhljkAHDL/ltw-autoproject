@@ -1,0 +1,6 @@
+id=ltw_autoproject
+name=Link to Windows Auto Project Helper
+version=v1.7.0
+versionCode=170
+author=LTW-AutoProject
+description=Grants persistent PROJECT_MEDIA, TURN_SCREEN_ON, RUN_ANY_IN_BACKGROUND appops and Doze whitelist to Link to Windows on ColorOS 17.
