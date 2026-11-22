@@ -1,0 +1,18 @@
+# Gradle & build outputs
+.gradle/
+app/build/
+build/
+
+# Local environment & signing configs
+local.properties
+*.keystore
+*.jks
+
+# Release binaries (attached in GitHub Releases)
+dist/
+
+# IDE & OS files
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
