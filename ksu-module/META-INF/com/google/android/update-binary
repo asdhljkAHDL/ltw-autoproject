@@ -1,0 +1,35 @@
+#!/sbin/sh
+
+#################
+# Initialization
+#################
+
+umask 022
+
+# echo before loading util_functions
+ui_print() { echo "$1"; }
+
+require_new_magisk() {
+  ui_print "*******************************"
+  ui_print " Please install Magisk v20.4+! "
+  ui_print "*******************************"
+  exit 1
+}
+
+OUTFD=$2
+ZIPFILE=$3
+
+mount /data 2>/dev/null
+
+[ -f /data/adb/magisk/util_functions.sh ] || require_new_magisk
+. /data/adb/magisk/util_functions.sh
+[ $API -lt 21 ] && require_new_magisk
+
+ui_print "- Extracting module files"
+unzip -o "$ZIPFILE" 'module.prop' 'service.sh' 'customize.sh' -d $MODPATH >&2
+
+[ -f "$MODPATH/customize.sh" ] && . $MODPATH/customize.sh
+
+# Handle permissions
+set_perm_recursive $MODPATH 0 0 0755 0644
+[ -f "$MODPATH/service.sh" ] && set_perm "$MODPATH/service.sh" 0 0 0755
